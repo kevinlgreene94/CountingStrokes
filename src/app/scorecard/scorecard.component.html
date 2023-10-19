@@ -1,0 +1,8 @@
+<form (ngSubmit)="onSubmit()">
+<div class="scorecard" *ngFor="let hole of holes">
+    <p>Hole {{hole}}</p>
+    <app-hole [(ngModel)]="roundData.holeOne"></app-hole> 
+</div>
+<button type="submit">Submit</button>
+</form>
+<router-outlet></router-outlet>
