@@ -1,4 +1,4 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-hole',
@@ -7,14 +7,24 @@ import { Component, Input} from '@angular/core';
 })
 export class HoleComponent {
   @Input() currentScore: number = 0;
-  parSelect: string = '';
+  @Input() parSelect: number = 0;
+  @Output() scoreChange = new EventEmitter<number>();
+  @Output() parSelectChange = new EventEmitter<number>();
 
   increment() {
     this.currentScore++;
+    this.scoreChange.emit(this.currentScore);
   }
+
   decrement() {
     if (this.currentScore > 0) {
       this.currentScore--;
+      this.scoreChange.emit(this.currentScore);
     }
+  }
+
+  updateParSelect(value: number) {
+    this.parSelect = value;
+    this.parSelectChange.emit(this.parSelect);
   }
 }

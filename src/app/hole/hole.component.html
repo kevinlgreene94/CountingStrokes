@@ -23,12 +23,12 @@
 </style>
 
 <div class="hole">
-    <select [(ngModel)]="parSelect">
-        <option value="3">Par 3</option>
-        <option value="4">Par 4</option>
-        <option value="5">Par 5</option>
+    <select [(ngModel)]="parSelect" (ngModelChange)="parSelectChange.emit(parSelect)">
+        <option [value]="3">Par 3</option>
+        <option [value]="4">Par 4</option>
+        <option [value]="5">Par 5</option>
     </select>
-    <button (click)="decrement()">-</button>
+    <button (click)="decrement()" type="button">-</button>
     <span>{{ currentScore }}</span>
-    <button (click)="increment()">+</button>
+    <button (click)="increment()" type="button">+</button>
 </div>

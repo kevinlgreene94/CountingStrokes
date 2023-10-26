@@ -1,8 +1,18 @@
 <form (ngSubmit)="onSubmit()">
-<div class="scorecard" *ngFor="let hole of holes">
-    <p>Hole {{hole}}</p>
-    <app-hole [(ngModel)]="roundData.holeOne"></app-hole> 
-</div>
-<button type="submit">Submit</button>
-</form>
+    <div>
+        <label for="courseName">Course Name:</label>
+        <input type="text" id="courseName" name="courseName" [(ngModel)]="courseName">
+        <ngb-datepicker></ngb-datepicker>
+    </div>
+    <div class="scorecard" *ngFor="let hole of holes">
+      <p>Hole {{hole}}</p>
+      <app-hole
+        [currentScore]="roundData[hole].score"
+        [(parSelect)]="roundData[hole].par"
+        (scoreChange)="updateCompScore(hole, $event)"
+        (parSelectChange)="updateParSelect(hole, $event)"
+      ></app-hole>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
 <router-outlet></router-outlet>

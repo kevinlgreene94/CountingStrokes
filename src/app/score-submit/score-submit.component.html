@@ -1,0 +1,19 @@
+<div *ngIf="totalStrokes > totalPar else GoodJob">
+    <h1>Practice Makes Perfect!</h1>
+    <h2>You shot: {{totalScore}} over par.</h2>
+</div>
+<ng-template #GoodJob>
+    <h1>Great Job!</h1>
+    <h2>You shot: {{totalScore}} under par.</h2>
+</ng-template>
+
+<h2>{{courseName$ | async}} Scorecard</h2>
+<table>
+    <tbody>
+        <tr *ngFor="let hole of score$ | async | keyvalue">
+            <td>Hole {{ hole.key }}</td>
+            <td>Par: {{ hole.value.par }}</td>
+            <td>Score: {{ hole.value.score }}</td>
+        </tr>
+    </tbody>    
+</table>
