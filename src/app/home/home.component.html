@@ -1,0 +1,14 @@
+<div class="homeContainer">
+    <h1>Welcome to Counting Strokes!</h1>
+    <div *ngFor="let round of storedRounds; let i = index;">
+        <div class="roundContainer">
+            <h3>{{round.courseName}}</h3>
+            <p>{{round.date}}</p>
+            <p>{{round.totalScore}}</p>
+            <button [routerLink]="['/score-submit', round]" (click)="onSubmit(i)">View Scorecard</button>
+            <button (click)="onDelete(i)">Delete</button>
+        </div>
+    </div>   
+    <h2>Start a new Round</h2>
+    <button [routerLink]="['/scorecard']" class="startButton">Scorecard</button>
+</div>

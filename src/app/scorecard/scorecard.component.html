@@ -1,10 +1,17 @@
 <form (ngSubmit)="onSubmit()">
-    <div>
-        <label for="courseName">Course Name:</label>
-        <input type="text" id="courseName" name="courseName" [(ngModel)]="courseName">
-        <ngb-datepicker></ngb-datepicker>
-    </div>
-    <div class="scorecard" *ngFor="let hole of holes">
+        <div class="inputContainer">
+            <label for="courseName">Course Name: </label>
+            <input type="text" id="courseName" name="courseName" [(ngModel)]="courseName">
+            <label for="roundLength">Number of Holes: </label>
+            <select name="roundLength" id="roundLength" [(ngModel)]="holes" (change)="updateRoundLength()">
+                <option [value]="9">9</option>
+                <option [value]="18">18</option>
+            </select>
+        </div>
+        <div class="datepicker">
+            <ngb-datepicker [(ngModel)]="date" name="datepicker"></ngb-datepicker>
+        </div>
+    <div class="scorecard" *ngFor="let hole of holesArray">
       <p>Hole {{hole}}</p>
       <app-hole
         [currentScore]="roundData[hole].score"
@@ -13,6 +20,8 @@
         (parSelectChange)="updateParSelect(hole, $event)"
       ></app-hole>
     </div>
-    <button type="submit">Submit</button>
+    <div class="submitButton">
+        <button type="submit">Submit</button>
+    </div>
   </form>
 <router-outlet></router-outlet>

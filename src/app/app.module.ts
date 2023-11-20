@@ -11,6 +11,7 @@ import { golfRoundReducer } from './app.reducer';
 import { ScoreSubmitComponent } from './score-submit/score-submit.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ScorecardComponent,
     HoleComponent,
     HeaderComponent,
-    ScoreSubmitComponent
+    ScoreSubmitComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

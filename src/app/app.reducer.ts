@@ -1,16 +1,14 @@
 import { createReducer, on, createFeatureSelector } from '@ngrx/store';
-import { updatePar, updateScore, updateTotalScore, updateTotalStrokes, updateCourseName, updateDate } from './app.actions';
+import { updateHoles, updateScore, updateTotalScore, updateTotalStrokes, updateCourseName, updateDate } from './app.actions';
 import { createSelector } from '@ngrx/store';
 import { roundState } from './shared/interfaces/round.interface';
 
     
 export const initialState : roundState = {
-    courseName: "Test Name",
-    date: "Test Date",
-    par: 0,
-    score: {1: {par: 0, score: 0}, 2: {par: 0, score: 0}, 3: {par: 0, score: 0}, 4: {par: 0, score: 0},
-    5: {par: 0, score: 0}, 6: {par: 0, score: 0}, 7: {par: 0, score: 0}, 8: {par: 0, score: 0},
-    9: {par: 0, score: 0}},
+    courseName: "",
+    date: "",
+    holes: 0,
+    score: {},
     totalScore: 0,
     totalStrokes: 0
 };
@@ -20,9 +18,9 @@ export const selectCourseName = createSelector(
   selectRoundState,
   (state: roundState) => state.courseName
 );
-export const selectPar = createSelector(
+export const selectHoles = createSelector(
     selectRoundState,
-    (state: roundState) => state.par
+    (state: roundState) => state.holes
 );
 
 export const selectScore = createSelector(
@@ -47,7 +45,7 @@ export const selectTotalStrokes = createSelector(
 
 export const golfRoundReducer = createReducer(
   initialState,
-  on(updatePar, (state, {par}) => ({...state, par: par})),
+  on(updateHoles, (state, {holes}) => ({...state, holes: holes})),
   on(updateScore, (state, {score}) => ({...state, score: score})),
   on(updateTotalScore, (state, {totalScore}) => ({...state, totalScore: totalScore})),
   on(updateTotalStrokes, (state, {totalStrokes}) => ({...state, totalStrokes: totalStrokes})),

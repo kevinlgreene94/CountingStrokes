@@ -1,19 +1,29 @@
-<div *ngIf="totalStrokes > totalPar else GoodJob">
-    <h1>Practice Makes Perfect!</h1>
-    <h2>You shot: {{totalScore}} over par.</h2>
+<div class="submitComp">
+    <div *ngIf="totalScore > 0 else GoodJob">
+        <h1>Practice Makes Perfect!</h1>
+        <h2>You shot: {{totalScore}} over par.</h2>
+    </div>
+    <ng-template #GoodJob>
+        <h1>Great Job!</h1>
+        <h2>You shot: {{totalScore}} under par.</h2>
+    </ng-template>
+    <h2>{{courseName$ | async}} Scorecard</h2>
+    <h3>Date: {{roundDate}}</h3>
+    <table>
+        <tbody>
+            <tr *ngFor="let hole of sortedKeys">
+                <div *ngIf="score$[hole].par != 0 else NoDisplay">
+                    <td>Hole {{ hole }}</td>
+                    <td>Par: {{ score$[hole].par }}</td>
+                    <td>Score: {{ score$[hole].score }}</td>
+                </div>
+                <ng-template #NoDisplay></ng-template>
+            </tr>
+        </tbody>    
+    </table>
+    <h3>Total Strokes: {{totalStrokes}}</h3>
+    <div class="saveButton">
+        <h3>Save your Score!</h3>
+        <button [routerLink]="['']" (click)="onSubmit()">Save</button>
+    </div>
 </div>
-<ng-template #GoodJob>
-    <h1>Great Job!</h1>
-    <h2>You shot: {{totalScore}} under par.</h2>
-</ng-template>
-
-<h2>{{courseName$ | async}} Scorecard</h2>
-<table>
-    <tbody>
-        <tr *ngFor="let hole of score$ | async | keyvalue">
-            <td>Hole {{ hole.key }}</td>
-            <td>Par: {{ hole.value.par }}</td>
-            <td>Score: {{ hole.value.score }}</td>
-        </tr>
-    </tbody>    
-</table>
